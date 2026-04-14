@@ -68,3 +68,27 @@ def test_get_ticket_tier_General_works_with_9():
 def test_get_ticket_tier_invalid_if_num_not_0_to_9():
     with pytest.raises(ValueError):
         get_ticket_tier("TK-12345")
+
+def test_calculate_total_works():
+    result = calculate_total([1.23,4.56,2.12,8.21], 0.2)
+    assert result == 12.90
+
+def test_calculate_total_works_no_discount():
+    result = calculate_total([1.23,4.56,2.12,8.21], 0.0)
+    assert result == 16.12
+
+def test_calculate_total_works_with_full_discount():
+    result = calculate_total([1.23,4.56,2.12,8.21], 1.0)
+    assert result == 0
+
+def test_calculate_total_doesnt_work_with_no_items():
+    with pytest.raises(ValueError):
+        calculate_total([], 0.1)
+
+def test_calculate_total_doesnt_work_with_discount_out_of_range():
+    with pytest.raises(ValueError):
+        calculate_total([1.23,4.56,2.12,8.21], 1.2)
+
+def test_calculate_total_doesnt_work_if_prices_not_list():
+    with pytest.raises(TypeError):
+        calculate_total((1.23,1.22,1.24), 1.2)
