@@ -1,5 +1,12 @@
 def validate_ticket(code):
-    pass
+    if len(code) != 8:
+        return False
+    elif type(code) != str:
+        raise TypeError("Ticket must be a string")
+    elif code.startswith("TK") and code[2:6].isnumeric():
+        return True
+    else:
+        return False
 
 def get_ticket_tier(code):
     if code[2] == "0" or code[2] == "1" or code[2] == "2" or code[2] == "3":
