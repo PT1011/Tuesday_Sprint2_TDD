@@ -7,22 +7,18 @@ def test_ticket_is_valid_starting_with_TK():
 
 def test_ticket_is_invalid_not_starting_with_TK():
     result = validate_ticket("AB928134")
-    assert result == True
+    assert result == False
 
 def test_ticket_is_invalid_not_having_8_characters():
     result = validate_ticket("TK92134")
     assert result == False
 
 def test_ticket_is_invalid_not_having_last_6_numbers():
-    result = validate_ticket("TK92134")
-    assert result == False
-
-def test_ticket_is_invalid_not_having_last_6_numbers():
-    result = validate_ticket("TK92134B")
+    result = validate_ticket("TKA92134")
     assert result == False
 
 def test_ticket_is_string():
-    result = validate_ticket("TK92134")
+    result = validate_ticket("TK921348")
     assert result == True
 
 def test_ticket_is_not_string():
